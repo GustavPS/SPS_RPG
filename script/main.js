@@ -1,15 +1,17 @@
 var keyUpp = false, keyDown= false, keyLeft = false, keyRight = false;
+var player = new Character(100, 100, 30, 30, 'none');
+var wasd = true;
+var vy = 0, vx = 0;
 
 function init() {
     game = document.getElementById('camera');
     ctx = game.getContext('2d');
     
-    window.setInterval(update, 25);
+    window.setInterval(update, 15);
 }
 
 function keyHandler(event) {
-    key = event.keyCode;
-
+    var key = event.keyCode;
 
     if(wasd){
         if (key === 87) {
@@ -22,15 +24,15 @@ function keyHandler(event) {
             keyRight = true;
         }
     }
+}
     
     function keyUp(event) {
     if (event.keyCode === 87) {
         keyUpp = false;
-        jmp -= 1;
+        vy = 0;
     } if (event.keyCode === 83) {
         keyDown = false;
         vy = 0;
-        characters[0].h = characters[0].h * 2;
     } if (event.keyCode === 65) {
         keyLeft = false;
         vx = 0;
@@ -39,15 +41,44 @@ function keyHandler(event) {
         vx = 0;
     }
 
-}
-    
+}   
     //måste skriva vad som händer när man trycker ner WASD
 
-function keyDown() {
-    
+function Character(x, y, w, h, wep) {
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.wep = wep;
+    this.speed = 2;
+    this.render= function() {
+        ctx.beginPath();
+        ctx.fillRect(this.x, this.y, this.w, this.h);
+        ctx.closePath();
+    }
+    this.walk = function() {
+        if(keyUpp) {
+            vy = -this.speed;
+        }
+        if(keyDown) {
+            vy = this.speed;
+        }
+        if(keyRight) {
+            vx = this.speed;
+        }
+        if(keyLeft) {
+            vx = -this.speed;
+        }
+    }
 }
 
+
+
 function update() {
-    
+    ctx.clearRect(0, 0, 1280, 1000);
+    player.render();
+    player.walk();
+    player.x += vx;
+    player.y += vy;
 }
 
