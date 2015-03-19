@@ -3,6 +3,19 @@ var player = new Character(100, 100, 30, 30, 'none');
 var wasd = true;
 var vy = 0, vx = 0;
 
+var objects = [];
+
+function Object() {
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.img = img;
+    this.type = type;
+}
+
+
+
 function init() {
     game = document.getElementById('camera');
     ctx = game.getContext('2d');
@@ -56,6 +69,7 @@ function Character(x, y, w, h, wep) {
         ctx.fillRect(this.x, this.y, this.w, this.h);
         ctx.closePath();
     }
+    
     this.walk = function() {
         if(keyUpp) {
             vy = -this.speed;
@@ -72,6 +86,11 @@ function Character(x, y, w, h, wep) {
     }
 }
 
+function crashDetect() {
+    for(var i = 0; i < objects.length; i++) {
+        if(player.x >= )
+    }
+}
 
 
 function update() {
