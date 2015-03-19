@@ -1,7 +1,7 @@
 var keyUpp = false, keyDown= false, keyLeft = false, keyRight = false;
 var player = new Character(100, 100, 30, 30, 'none');
 var wasd = true;
-var vy = 0, vx = 0;
+var vy = 0, vx = 0, mousex = 0, mousey = 0;
 
 function init() {
     game = document.getElementById('camera');
@@ -50,7 +50,7 @@ function Character(x, y, w, h, wep) {
     this.w = w;
     this.h = h;
     this.wep = wep;
-    this.speed = 2;
+    this.speed = 5;
     this.render= function() {
         ctx.beginPath();
         ctx.fillRect(this.x, this.y, this.w, this.h);
@@ -72,18 +72,39 @@ function Character(x, y, w, h, wep) {
     }
 }
 
-function Weapons(type, dmg, img, ammo, ispot){
+var weapons = []
+
+function Weapons(type, ispot){
     this.type = type;
-    this.dmg = dmg;
-    this.img = img;
-    this.ammo = ammo;
+    this.dmg
+    this.img
+    this.ammo
     this.ispot = ispot;
     
     this.render = function() {
         if(this.type = 'ak47') {
-            
+            this.dmg = 2;
+            this.img = '';
+            this.ammo = 10;
         }
+        if(this.type = 'shotgun') {
+            this.dmg = 4;
+            this.img = '';
+            this.ammo = 5;
+        }
+        if(this.type = 'pistol') {
+            this.dmg = 1;
+            this.img = '';
+            this.ammo = 100;
+        }
+        
     }
+}
+
+function showCoords(event) {
+    mousex = event.clientX;
+    mousey = event.clientY;
+    
 }
 
 function update() {
@@ -92,5 +113,9 @@ function update() {
     player.walk();
     player.x += vx;
     player.y += vy;
+    
+    console.log(mousex, mousey);
+    
 }
+
 
