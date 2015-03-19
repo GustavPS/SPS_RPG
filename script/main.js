@@ -3,17 +3,38 @@ var player = new Character(100, 100, 30, 30, 'none');
 var wasd = true;
 var vy = 0, vx = 0;
 
-var objects = [];
+var objects = [new Object(200, 100, 100, 10, '', 'wall')];
 
-function Object() {
+function Object(x,y , w, h, img, type) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
     this.img = img;
     this.type = type;
+    this.render= function() {
+        ctx.beginPath();
+        ctx.fillRect(this.x, this.y, this.w, this.h);
+    }
 }
 
+function crashDetect() {
+    for(var i = 0; i < objects.length; i++) {
+        if(player.x >= objects[i].x && player.x <= objects[i].x + objects[i].w && player.y >= objects[i].y && player.y <= objects[i].y + objects[i].h) {
+            console.log('CRASH');
+        } else if(player.x + player.w >= objects[i].x && player.x + player.w <= objects[i].x + objects[i].w && player.y >= objects[i].y && player.y <= objects[i].y + objects[i].h) {
+            console.log('CRASH');
+        } else if(player.x >= objects[i].x && player.x <= objects[i].x + objects[i].w && player.y + player.h >= objects[i].y && player.y + player.h <= objects[i].y + objects[i].h) {
+            console.log('CRASH');
+        } else if(player.x + player.w >= objects[i].x && player.x + player.w <= objects[i].x + objects[i].w && player.y + player.h >= objects[i].y && player.y + player.h <= objects[i].y + objects[i].h) {
+            console.log('CRASH');
+        } else if(objects[i].x >= player.x && objects[i].x <= player.x + player.w && objects[i].y >= player.y && objects[i].y <= player.y + player.h) {
+            console.log('CRASH');
+        } else if(objects[i].x + objects[i].w >= player.x && objects[i].x + objects[i].w <= player.x && objects[i].y >= player.y && objects[i].y <= player.y + player.h) {
+            console.log('CRASH');
+        }
+    }
+}
 
 
 function init() {
@@ -86,14 +107,6 @@ function Character(x, y, w, h, wep) {
     }
 }
 
-<<<<<<< HEAD
-function crashDetect() {
-    for(var i = 0; i < objects.length; i++) {
-        if(player.x >= )
-    }
-}
-
-=======
 function Weapons(type, dmg, img, ammo, ispot){
     this.type = type;
     this.dmg = dmg;
@@ -107,10 +120,14 @@ function Weapons(type, dmg, img, ammo, ispot){
         }
     }
 }
->>>>>>> weapons
 
 function update() {
     ctx.clearRect(0, 0, 1280, 1000);
+    crashDetect();
+    for(var i = 0; i < objects.length; i++) {
+        objects[i].render();
+    }
+    
     player.render();
     player.walk();
     player.x += vx;
