@@ -2,8 +2,9 @@ var keyUpp = false, keyDown = false, keyLeft = false, keyRight = false;
 var player = new Character(100, 100, 30, 30, 'none');
 var wasd = true;
 var vy = 0, vx = 0, mousex = 0, mousey = 0;
-
-var objects = [new Object(200, 100, 100, 10, '', 'wall')];
+var a = 0, b = 0, c = 0, v = 0, bulletVY = 0, bulletVX = 0;
+var xBullet, yBullet, bulletWidth = 15, bulletHeight = 15;
+var objects = [new Object(200, 100, 100, 10, '', 'wall')], bullets = [];
 
 function Object(x,y , w, h, img, type) {
     this.x = x;
@@ -107,6 +108,28 @@ function Character(x, y, w, h, wep) {
     }
 }
 
+function BulletObj(x, y, w, h) { 
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+
+    this.render = function() {
+        
+        ctx.beginPath();
+        ctx.fillRect(this.x, this.y, this.w, this.h);
+        ctx.closePath();
+        
+    }
+}
+
+function generateBullets() {
+    xBullet = player.x;
+    yBullet = player.y;
+
+
+    bullets.push(new BulletObj(xBullet, yBullet, bulletWidth, bulletHeight));
+}
 
 
 /*function crashDetect() {
@@ -147,6 +170,18 @@ function Weapons(type, ispot){
     }
 }
 
+function shoot(){
+    
+    generateBullets();
+    
+    b = mousey - player.y;
+    a = mousex - player.x;
+    c = Math.sqrt(a+b);
+    v = (b/c/90);
+    
+    bulletVY = c * Math.sin(v);
+    bulletVX = c * Math.cos(v);
+}
 
 function showCoords(event) {
     mousex = event.clientX;
@@ -167,7 +202,15 @@ function update() {
     player.x += vx;
     player.y += vy;
     
-    console.log(mousex, mousey);
+    
+    for (var i = 0; i < bullets.length; i++) {
+        bullets[i].render();
+        
+        bullets[i].x += bulletVX;
+        bullets[i].y += bulletVY;
+    }
+        
+    console.log(mousex,mousey);
     
 }
 
