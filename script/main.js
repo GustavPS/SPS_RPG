@@ -86,14 +86,14 @@ function Character(x, y, w, h, wep) {
     }
 }
 
-<<<<<<< HEAD
-function crashDetect() {
+
+/*function crashDetect() {
     for(var i = 0; i < objects.length; i++) {
         if(player.x >= )
     }
-}
+}*/
 
-=======
+
 function Weapons(type, dmg, img, ammo, ispot){
     this.type = type;
     this.dmg = dmg;
@@ -107,7 +107,7 @@ function Weapons(type, dmg, img, ammo, ispot){
         }
     }
 }
->>>>>>> weapons
+
 
 function update() {
     ctx.clearRect(0, 0, 1280, 1000);
