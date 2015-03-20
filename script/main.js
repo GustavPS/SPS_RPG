@@ -1,4 +1,4 @@
-var keyUpp = false, keyDown= false, keyLeft = false, keyRight = false;
+var keyUpp = false, keyDown = false, keyLeft = false, keyRight = false;
 var player = new Character(100, 100, 30, 30, 'none');
 var wasd = true;
 var vy = 0, vx = 0, mousex = 0, mousey = 0;
@@ -107,7 +107,7 @@ function Character(x, y, w, h, wep) {
     }
 }
 
-<<<<<<< HEAD
+
 
 /*function crashDetect() {
     for(var i = 0; i < objects.length; i++) {
@@ -116,12 +116,11 @@ function Character(x, y, w, h, wep) {
 }*/
 
 
-function Weapons(type, dmg, img, ammo, ispot){
-=======
+
 var weapons = []
 
 function Weapons(type, ispot){
->>>>>>> weapons
+
     this.type = type;
     this.dmg
     this.img
@@ -148,14 +147,13 @@ function Weapons(type, ispot){
     }
 }
 
-<<<<<<< HEAD
-=======
+
 function showCoords(event) {
     mousex = event.clientX;
     mousey = event.clientY;
     
 }
->>>>>>> weapons
+
 
 function update() {
     ctx.clearRect(0, 0, 1280, 1000);
