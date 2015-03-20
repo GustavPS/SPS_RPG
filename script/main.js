@@ -121,7 +121,7 @@ function Character(x, y, w, h, wep) {
     }
 }
 
-<<<<<<< Updated upstream
+
 function BulletObj(x, y, w, h) { 
     this.x = x;
     this.y = y;
@@ -156,13 +156,13 @@ function generateBullets() {
 
 var weapons = []
 
-function Weapons(type, ispot){
 
-=======
+
+
 var weapons = [new Weapons(500, 500, 'ak47', 0)]
 
 function Weapons(x, y, type, ispot){
->>>>>>> Stashed changes
+
     this.type = type;
     this.x = x;
     this.y = y;
@@ -234,7 +234,7 @@ function update() {
     player.x += vx;
     player.y += vy;
     
-<<<<<<< Updated upstream
+
     
     for (var i = 0; i < bullets.length; i++) {
         bullets[i].render();
@@ -245,8 +245,7 @@ function update() {
         
     console.log(mousex,mousey);
     
-=======
->>>>>>> Stashed changes
+
 }
 
 
