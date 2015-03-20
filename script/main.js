@@ -17,6 +17,7 @@ function Object(x,y , w, h, img, type) {
         ctx.beginPath();
         ctx.fillRect(this.x, this.y, this.w, this.h);
     }
+    
 }
 
 function crashDetect() {
@@ -33,6 +34,18 @@ function crashDetect() {
             console.log('CRASH');
         } else if(objects[i].x + objects[i].w >= player.x && objects[i].x + objects[i].w <= player.x && objects[i].y >= player.y && objects[i].y <= player.y + player.h) {
             console.log('CRASH');
+        }
+    }
+    
+    for(var i = 0; i < weapons.length; i++) {
+        if(player.x >= weapons[i].x && player.x <= weapons[i].x + 5 && player.y >= weapons[i].y && player.y <= weapons[i].y + 5) {
+            console.log('VAPEEEN');
+        } else if(player.x + player.w >= weapons[i].x && player.x + player.w <= weapons[i].x + 5 && player.y >= weapons[i].y && player.y <= weapons[i].y + 5) {
+            console.log('VAPEEEN');
+        } else if(player.x >= weapons[i].x && player.x <= weapons[i].x + 5 && player.y + player.w >= weapons[i].y && player.y + player.w <= weapons[i].y) {
+            console.log('VAPEEEN');
+        } else if(player.x + player.w >= weapons[i].x && player.x + player.w <= weapons[i].x + 5 && player.y + player.w >= weapons[i].y && player.y + player.w <= weapons[i].y) {
+            console.log('VAPEEEN');
         }
     }
 }
@@ -108,6 +121,7 @@ function Character(x, y, w, h, wep) {
     }
 }
 
+<<<<<<< Updated upstream
 function BulletObj(x, y, w, h) { 
     this.x = x;
     this.y = y;
@@ -144,7 +158,14 @@ var weapons = []
 
 function Weapons(type, ispot){
 
+=======
+var weapons = [new Weapons(500, 500, 'ak47', 0)]
+
+function Weapons(x, y, type, ispot){
+>>>>>>> Stashed changes
     this.type = type;
+    this.x = x;
+    this.y = y;
     this.dmg
     this.img
     this.ammo
@@ -155,6 +176,9 @@ function Weapons(type, ispot){
             this.dmg = 2;
             this.img = '';
             this.ammo = 10;
+            ctx.beginPath();
+            ctx.fillRect(this.x, this.y, 5, 5);
+            ctx.closePath();
         }
         if(this.type = 'shotgun') {
             this.dmg = 4;
@@ -184,8 +208,14 @@ function shoot(){
 }
 
 function showCoords(event) {
-    mousex = event.clientX;
-    mousey = event.clientY;
+    var x = event.x;
+    var y = event.y;
+
+    x -= game.offsetLeft;
+    y -= game.offsetTop;
+    
+    console.log(x);
+    console.log(y);
     
 }
 
@@ -196,12 +226,15 @@ function update() {
     for(var i = 0; i < objects.length; i++) {
         objects[i].render();
     }
-    
+    for(var i = 0; i < weapons.length; i++) {
+        weapons[i].render();
+    }
     player.render();
     player.walk();
     player.x += vx;
     player.y += vy;
     
+<<<<<<< Updated upstream
     
     for (var i = 0; i < bullets.length; i++) {
         bullets[i].render();
@@ -212,6 +245,8 @@ function update() {
         
     console.log(mousex,mousey);
     
+=======
+>>>>>>> Stashed changes
 }
 
 
