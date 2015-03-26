@@ -122,6 +122,9 @@ function Character(x, y, w, h, wep) {
 }
 
 <<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
 function BulletObj(x, y, w, h) { 
     this.x = x;
     this.y = y;
@@ -156,7 +159,13 @@ function generateBullets() {
 
 var weapons = []
 
-function Weapons(type, ispot){
+
+<<<<<<< Updated upstream
+
+
+var weapons = [new Weapons(500, 500, 'ak47', 0)]
+
+function Weapons(x, y, type, ispot){
 
 =======
 var weapons = [new Weapons(500, 500, 'ak47', 0)]
@@ -208,14 +217,14 @@ function shoot(){
 }
 
 function showCoords(event) {
-    var x = event.x;
-    var y = event.y;
+    mousex = event.x;
+    mousey = event.y;
 
-    x -= game.offsetLeft;
-    y -= game.offsetTop;
+    mousex -= game.offsetLeft;
+    mousey -= game.offsetTop;
     
-    console.log(x);
-    console.log(y);
+    console.log(mousex);
+    console.log(mousey);
     
 }
 
@@ -235,6 +244,9 @@ function update() {
     player.y += vy;
     
 <<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
     
     for (var i = 0; i < bullets.length; i++) {
         bullets[i].render();
@@ -243,8 +255,9 @@ function update() {
         bullets[i].y += bulletVY;
     }
         
-    console.log(mousex,mousey);
     
+<<<<<<< Updated upstream
+
 =======
 >>>>>>> Stashed changes
 }
