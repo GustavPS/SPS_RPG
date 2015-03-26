@@ -20,6 +20,28 @@ function Object(x,y , w, h, img, type) {
     
 }
 
+function calculate(event) {
+    var rect = game.getBoundingClientRect();
+    x = event.clientX - rect.left;
+    y = event.clientY - rect.top;
+    var dx = player.x - x + (player.w / 2);
+    var dy = player.y - y + (player.w / 2);
+    vinkel = Math.round(Math.atan(dx / dy) * (180/Math.PI));
+    if(dx <= 0 && dy >= 0) {
+        vinkel += 180;
+    } else if(dx >= 0 && dy >= 0) {
+        vinkel += 180;
+    } else if(dx >= 0 & dy <= 0) {
+        vinkel += 360;
+    } else if(vinkel == -0 || vinkel == 0 ) {
+        vinkel = 360;
+    }
+    if(vinkel < 0) {
+        vinkel = Math.abs(vinkel);
+    }
+    console.log(vinkel);
+}
+
 function crashDetect() {
     for(var i = 0; i < objects.length; i++) {
         if(player.x >= objects[i].x && player.x <= objects[i].x + objects[i].w && player.y >= objects[i].y && player.y <= objects[i].y + objects[i].h) {
@@ -52,9 +74,10 @@ function crashDetect() {
 
 
 function init() {
+
     game = document.getElementById('camera');
     ctx = game.getContext('2d');
-    
+    calculate(event);
     window.setInterval(update, 15);
 }
 
@@ -121,10 +144,6 @@ function Character(x, y, w, h, wep) {
     }
 }
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 function BulletObj(x, y, w, h) { 
     this.x = x;
     this.y = y;
@@ -155,23 +174,9 @@ function generateBullets() {
     }
 }*/
 
-
-
-var weapons = []
-
-
-<<<<<<< Updated upstream
-
-
 var weapons = [new Weapons(500, 500, 'ak47', 0)]
 
 function Weapons(x, y, type, ispot){
-
-=======
-var weapons = [new Weapons(500, 500, 'ak47', 0)]
-
-function Weapons(x, y, type, ispot){
->>>>>>> Stashed changes
     this.type = type;
     this.x = x;
     this.y = y;
@@ -242,24 +247,11 @@ function update() {
     player.walk();
     player.x += vx;
     player.y += vy;
-    
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
-    
     for (var i = 0; i < bullets.length; i++) {
         bullets[i].render();
         
         bullets[i].x += bulletVX;
         bullets[i].y += bulletVY;
     }
-        
-    
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 }
-
-
