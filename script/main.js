@@ -208,14 +208,14 @@ function shoot(){
 }
 
 function showCoords(event) {
-    var x = event.x;
-    var y = event.y;
+    mousex = event.x;
+    mousey = event.y;
 
-    x -= game.offsetLeft;
-    y -= game.offsetTop;
+    mousex -= game.offsetLeft;
+    mousey -= game.offsetTop;
     
-    console.log(x);
-    console.log(y);
+    console.log(mousex);
+    console.log(mousey);
     
 }
 
@@ -243,7 +243,6 @@ function update() {
         bullets[i].y += bulletVY;
     }
         
-    console.log(mousex,mousey);
     
 
 }
