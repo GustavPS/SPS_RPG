@@ -39,7 +39,7 @@ function calculate(event) {
     if(vinkel < 0) {
         vinkel = Math.abs(vinkel);
     }
-    console.log(vinkel);
+    
 }
 
 function crashDetect() {
@@ -214,11 +214,14 @@ function shoot(){
     
     b = mousey - player.y;
     a = mousex - player.x;
-    c = Math.sqrt(a+b);
-    v = (b/c/90);
+    c = Math.sqrt((a^2)+(b^2));
+    calculate(event);
     
-    bulletVY = c * Math.sin(v);
-    bulletVX = c * Math.cos(v);
+    bulletVY = 5 * Math.sin(vinkel);
+    bulletVX = 5 * Math.cos(vinkel);
+    if(mousex < 0){
+        bulletVX = -bulletVX;
+    }
 }
 
 function showCoords(event) {
@@ -228,8 +231,6 @@ function showCoords(event) {
     mousex -= game.offsetLeft;
     mousey -= game.offsetTop;
     
-    console.log(mousex);
-    console.log(mousey);
     
 }
 
@@ -254,4 +255,5 @@ function update() {
         bullets[i].x += bulletVX;
         bullets[i].y += bulletVY;
     }
+    console.log(bulletVX);
 }
