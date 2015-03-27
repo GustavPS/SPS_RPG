@@ -5,6 +5,7 @@ var vy = 0, vx = 0, mousex = 0, mousey = 0;
 var a = 0, b = 0, c = 0, v = 0, bulletVY = 0, bulletVX = 0;
 var xBullet, yBullet, bulletWidth = 15, bulletHeight = 15;
 var objects = [new Object(200, 100, 100, 10, '', 'wall')], bullets = [];
+var vinkel;
 
 function Object(x,y , w, h, img, type) {
     this.x = x;
@@ -216,9 +217,10 @@ function shoot(){
     a = mousex - player.x;
     c = Math.sqrt((a^2)+(b^2));
     calculate(event);
+    v = vinkel * (Math.PI / 180);
     
-    bulletVY = 5 * Math.sin(vinkel);
-    bulletVX = 5 * Math.cos(vinkel);
+    bulletVX = 5 * Math.sin(v);
+    bulletVY = 5 * Math.cos(v);
     if(mousex < 0){
         bulletVX = -bulletVX;
     }
